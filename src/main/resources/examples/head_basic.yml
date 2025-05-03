@@ -1,0 +1,11 @@
+# Head Basic Example
+location:
+  world: world
+  x: 100
+  y: 64
+  z: 100
+animation:
+  type: circular
+  startYaw: 0
+  speed: 5.0
+  interval: 2

@@ -1,0 +1,8 @@
+command:
+  create:
+    success: "&aRotating head created successfully."
+    success_armorstand: "&aRotating armor stand created successfully."
+    success_entity: "&aRotating entity created successfully."
+    invalid_block: "&eYou must target a player head block to animate it."
+    invalid_target: "&cYou must look at a head block, armor stand, or entity."
+  only_players: "&cOnly players can use this command."

@@ -1,0 +1,15 @@
+# RotatingHeadsPlus - Main Configuration
+
+# Language file to use (must exist in /lang/ folder)
+# Examples: en_US, es_ES
+language: en_US
+
+# Default animation settings used when running /rhead create
+defaultSpeed: 5.0        # Yaw speed per tick (float)
+defaultInterval: 2       # Ticks between updates (integer)
+
+# Max distance for /rhead remove to find an animated object
+maxRemovalDistance: 3.0
+
+# Enable debug messages in console (for development)
+debug: false

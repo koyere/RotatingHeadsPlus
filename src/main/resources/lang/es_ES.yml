@@ -1,0 +1,27 @@
+command:
+  only_players: "&cSolo los jugadores pueden usar este comando."
+
+  create:
+    success: "&a¡Cabeza rotativa creada con éxito!"
+    success_armorstand: "&aRotación del ArmorStand iniciada."
+    success_entity: "&aRotación de la entidad iniciada."
+    invalid_block: "&eDebes apuntar a un bloque de cabeza de jugador."
+    invalid_target: "&cDebes mirar una cabeza, ArmorStand o entidad válida."
+
+  remove:
+    success: "&cRotación eliminada correctamente."
+    not_found: "&eNo se encontró ninguna rotación cercana."
+
+  list:
+    count: "&bCabezas rotativas activas: &e{count}"
+
+  reload:
+    done: "&aArchivos de configuración y animaciones recargados."
+
+  help:
+    header: "&6Comandos disponibles:"
+    create: "&e/rhead create &7- Inicia la rotación de la cabeza que estás mirando."
+    remove: "&e/rhead remove &7- Detiene la rotación más cercana."
+    list: "&e/rhead list &7- Muestra el total de rotaciones activas."
+    reload: "&e/rhead reload &7- Recarga archivos de datos y configuración."
+    help: "&e/rhead help &7- Muestra este mensaje de ayuda."

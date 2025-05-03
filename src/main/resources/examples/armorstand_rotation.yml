@@ -1,0 +1,12 @@
+# Example: Rotating an ArmorStand using PingPong animation
+entity:
+  type: armorstand        # Entity type: armorstand, zombie, etc.
+  uuid: 123e4567-e89b-12d3-a456-426614174000  # UUID of the ArmorStand
+  world: world            # World where the ArmorStand is located
+
+animation:
+  type: pingpong          # Animation type: pingpong, circular, etc.
+  minYaw: -60             # Minimum yaw angle
+  maxYaw: 60              # Maximum yaw angle
+  step: 2.5               # How much yaw changes per tick
+  interval: 2             # Ticks between each update
