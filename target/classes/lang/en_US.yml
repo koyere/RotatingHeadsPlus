@@ -1,0 +1,27 @@
+command:
+  only_players: "&cOnly players can use this command."
+
+  create:
+    success: "&aRotating head created successfully."
+    success_armorstand: "&aArmorStand rotation started."
+    success_entity: "&aEntity rotation started."
+    invalid_block: "&eYou must target a player head block to animate it."
+    invalid_target: "&cYou must look at a head block, armor stand, or entity."
+
+  remove:
+    success: "&cRotation removed successfully."
+    not_found: "&eNo rotating object found nearby."
+
+  list:
+    count: "&bActive rotating heads: &e{count}"
+
+  reload:
+    done: "&aConfiguration and animations reloaded."
+
+  help:
+    header: "&6Available Commands:"
+    create: "&e/rhead create &7- Start rotating the head you're looking at."
+    remove: "&e/rhead remove &7- Stop the nearest rotation."
+    list: "&e/rhead list &7- List total active rotations."
+    reload: "&e/rhead reload &7- Reload data and config files."
+    help: "&e/rhead help &7- Show this help message."

@@ -1,0 +1,12 @@
+# Example: Rotating head with Circular animation
+location:
+  world: world            # Name of the world
+  x: 101                  # Block X coordinate (integer)
+  y: 64                   # Block Y coordinate (integer)
+  z: 100                  # Block Z coordinate (integer)
+
+animation:
+  type: circular          # Animation type: circular, pingpong, etc.
+  startYaw: 0             # Starting yaw angle (degrees)
+  speed: 5.0              # Yaw speed per tick (positive = clockwise)
+  interval: 2             # Update interval in ticks (1 = every tick)

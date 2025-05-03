@@ -1,0 +1,11 @@
+# Example: Rotating any entity (e.g., Zombie, Villager) in a continuous spin
+entity:
+  type: zombie            # Entity type: zombie, villager, armorstand, etc.
+  uuid: 123e4567-e89b-12d3-a456-426614174001  # UUID of the target entity
+  world: world            # World where the entity is located
+
+animation:
+  type: circular          # Animation type: circular spin
+  startYaw: 0             # Starting yaw angle
+  speed: 4.0              # Rotation speed per tick
+  interval: 1             # Ticks between each update

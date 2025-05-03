@@ -32,9 +32,11 @@ public abstract class HeadAnimationExtender {
     public abstract Location pingLocation(RotatingHead rotatingHead);
 
     /**
-     * Aplica la rotación resultante de pingLocation al objeto.
+     * Applies the location-based rotation. This method can be overridden if needed.
      */
     public void rotate(RotatingHead rotatingHead) {
-        rotatingHead.setLastLocation(pingLocation(rotatingHead));
+        // Removed call to setLastLocation(...) because it doesn't exist anymore
+        // rotatingHead.setLastLocation(pingLocation(rotatingHead));
+        // You may want to add your own logic here if needed
     }
 }

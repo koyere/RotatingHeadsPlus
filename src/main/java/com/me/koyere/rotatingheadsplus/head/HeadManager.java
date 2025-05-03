@@ -56,7 +56,7 @@ public class HeadManager {
         double closestDistance = maxDistance;
 
         for (RotatingHead head : heads.values()) {
-            if (!Objects.equals(head.getWorld(), player.getWorld())) continue;
+            if (!Objects.equals(head.getLocation().getWorld(), player.getWorld())) continue;
 
             double distance = head.getLocation().distance(playerLoc);
             if (distance <= closestDistance) {
