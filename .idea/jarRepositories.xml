@@ -21,5 +21,10 @@
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="bstats" />
+      <option name="name" value="bstats" />
+      <option name="url" value="https://repo.codemc.io/repo/maven-public/" />
+    </remote-repository>
   </component>
 </project>

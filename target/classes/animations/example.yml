@@ -1,0 +1,26 @@
+# Animación de ejemplo circular para ArmorStand
+type: armorstand
+
+# Ubicación donde aparecerá la entidad
+location:
+  world: world
+  x: 0.5
+  y: 64.0
+  z: 0.5
+
+# ¿La animación se repite?
+loop: true
+
+# Intervalo entre frames (ticks) → 20 ticks = 1 segundo
+interval: 10
+
+# Lista de frames (yaw, pitch)
+frames:
+  - [0, 0]
+  - [45, 0]
+  - [90, 0]
+  - [135, 0]
+  - [180, 0]
+  - [225, 0]
+  - [270, 0]
+  - [315, 0]

@@ -1,7 +1,9 @@
 package com.me.koyere.rotatingheadsplus;
 
+import com.me.koyere.rotatingheadsplus.animation.AnimationLoader;
 import com.me.koyere.rotatingheadsplus.animation.AnimationScheduler;
 import com.me.koyere.rotatingheadsplus.commands.HeadCommand;
+import com.me.koyere.rotatingheadsplus.compat.CompatProvider;
 import com.me.koyere.rotatingheadsplus.config.ConfigManager;
 import com.me.koyere.rotatingheadsplus.config.DataManager;
 import com.me.koyere.rotatingheadsplus.config.ExampleLoader;
@@ -31,6 +33,9 @@ public final class RotatingHeadsPlus extends JavaPlugin {
         saveDefaultConfig();
         new ExampleLoader().copyExamples();
 
+        // Inicializar compatibilidad con versiones
+        CompatProvider.initialize();
+
         // Inicializar gestores
         this.configManager = new ConfigManager(this);
         this.langManager = new LangManager();
@@ -46,8 +51,14 @@ public final class RotatingHeadsPlus extends JavaPlugin {
         // Cargar datos desde carpeta /data
         dataManager.loadHeads();
 
-        // Iniciar animaciones
+        // Iniciar animaciones programadas
         animationScheduler.start();
+
+        // Cargar animaciones desde /animations/*.yml
+        new AnimationLoader(this).loadAllAnimations();
+
+        // Iniciar bStats
+        new MetricsHandler(this).start();
 
         getLogger().info("RotatingHeadsPlus has been enabled.");
     }
@@ -86,3 +97,4 @@ public final class RotatingHeadsPlus extends JavaPlugin {
         return dataManager;
     }
 }
+

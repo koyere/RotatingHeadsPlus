@@ -19,3 +19,8 @@ permissions:
   rotatingheadsplus.admin:
     description: Allows access to /rhead reload and admin functions.
     default: op
+
+softdepend:
+  - PlaceholderAPI
+  - HolographicDisplays
+  - DecentHolograms
