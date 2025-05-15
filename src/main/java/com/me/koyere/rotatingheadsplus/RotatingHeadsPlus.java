@@ -1,19 +1,19 @@
 package com.me.koyere.rotatingheadsplus;
 
-import com.me.koyere.rotatingheadsplus.animation.AnimationLoader;
 import com.me.koyere.rotatingheadsplus.animation.AnimationScheduler;
 import com.me.koyere.rotatingheadsplus.commands.HeadCommand;
-import com.me.koyere.rotatingheadsplus.compat.CompatProvider;
 import com.me.koyere.rotatingheadsplus.config.ConfigManager;
 import com.me.koyere.rotatingheadsplus.config.DataManager;
 import com.me.koyere.rotatingheadsplus.config.ExampleLoader;
 import com.me.koyere.rotatingheadsplus.head.HeadManager;
 import com.me.koyere.rotatingheadsplus.lang.LangManager;
+import com.me.koyere.rotatingheadsplus.listeners.HeadPlaceListener;
+import com.me.koyere.rotatingheadsplus.placeholder.RotatingHeadsPlaceholder;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * Main plugin class for RotatingHeadsPlus.
- * Registers commands, managers, and starts animation scheduler.
+ * Main class for the RotatingHeadsPlus plugin.
+ * Initializes all managers and systems during plugin startup.
  */
 public final class RotatingHeadsPlus extends JavaPlugin {
 
@@ -29,14 +29,13 @@ public final class RotatingHeadsPlus extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        // Crear config.yml si no existe
+        // Generate config.yml if missing
         saveDefaultConfig();
+
+        // Copy example files from /resources/examples/ to /plugins/RotatingHeadsPlus/examples/
         new ExampleLoader().copyExamples();
 
-        // Inicializar compatibilidad con versiones
-        CompatProvider.initialize();
-
-        // Inicializar gestores
+        // Initialize managers
         this.configManager = new ConfigManager(this);
         this.langManager = new LangManager();
         this.langManager.load(configManager.getLanguageCode());
@@ -45,33 +44,43 @@ public final class RotatingHeadsPlus extends JavaPlugin {
         this.dataManager = new DataManager();
         this.animationScheduler = new AnimationScheduler();
 
-        // Registrar comandos
+        // Register main command
         getCommand("rhead").setExecutor(new HeadCommand());
 
-        // Cargar datos desde carpeta /data
+        // Register event listeners
+        getServer().getPluginManager().registerEvents(new HeadPlaceListener(), this);
+
+        // Load all YAML animations from /data/
         dataManager.loadHeads();
 
-        // Iniciar animaciones programadas
+        // Start scheduled animation task
         animationScheduler.start();
 
-        // Cargar animaciones desde /animations/*.yml
-        new AnimationLoader(this).loadAllAnimations();
-
-        // Iniciar bStats
-        new MetricsHandler(this).start();
+        // Register PlaceholderAPI hook if available
+        if (getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            new RotatingHeadsPlaceholder(this).register();
+            getLogger().info("PlaceholderAPI hook registered.");
+        }
 
         getLogger().info("RotatingHeadsPlus has been enabled.");
     }
 
     @Override
     public void onDisable() {
+        // Stop scheduled animation task
         if (animationScheduler != null) {
             animationScheduler.stop();
         }
+
+        // Save all active rotating objects to /data/
+        if (dataManager != null) {
+            dataManager.saveAll();
+        }
+
         getLogger().info("RotatingHeadsPlus has been disabled.");
     }
 
-    // === Getters ===
+    // === Getters for managers ===
 
     public static RotatingHeadsPlus getInstance() {
         return instance;
@@ -97,4 +106,3 @@ public final class RotatingHeadsPlus extends JavaPlugin {
         return dataManager;
     }
 }
-

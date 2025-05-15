@@ -2,6 +2,7 @@ package com.me.koyere.rotatingheadsplus.animation;
 
 import com.me.koyere.rotatingheadsplus.RotatingHeadsPlus;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
@@ -100,5 +101,29 @@ public class AnimationScheduler {
      */
     public HeadAnimation getAnimation(Rotatable target) {
         return animations.get(target.getUniqueId());
+    }
+
+    /**
+     * Returns the nearest animated Rotatable to a given location within a max distance.
+     */
+    public Rotatable getNearestRotatable(Location origin, double maxDistance) {
+        Rotatable nearest = null;
+        double closest = maxDistance;
+
+        for (UUID id : animations.keySet()) {
+            Rotatable obj = entities.get(id);
+            if (obj == null || !obj.isValid()) continue;
+
+            Location loc = obj.getLocation();
+            if (loc.getWorld() == null || !loc.getWorld().equals(origin.getWorld())) continue;
+
+            double distance = loc.distance(origin);
+            if (distance < closest) {
+                closest = distance;
+                nearest = obj;
+            }
+        }
+
+        return nearest;
     }
 }

@@ -1,5 +1,8 @@
 package com.me.koyere.rotatingheadsplus.animation;
 
+import com.me.koyere.rotatingheadsplus.actions.ActionEntry;
+import com.me.koyere.rotatingheadsplus.actions.ClickAction;
+import com.me.koyere.rotatingheadsplus.actions.ClickTrigger;
 import com.me.koyere.rotatingheadsplus.rotating.Rotatable;
 import com.me.koyere.rotatingheadsplus.rotating.RotatingArmorStand;
 import com.me.koyere.rotatingheadsplus.rotating.RotatingEntity;
@@ -7,17 +10,18 @@ import com.me.koyere.rotatingheadsplus.rotating.RotatingHead;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Zombie;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
- * Carga animaciones desde archivos YAML ubicados en la carpeta "animations".
+ * Loads animations from YAML files in the /animations folder.
+ * Supports type, location, frames, conditions and click actions.
  */
 public class AnimationLoader {
 
@@ -55,7 +59,7 @@ public class AnimationLoader {
     private void loadAnimationFromFile(File file) {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
-        String type = config.getString("type", "armorstand").toLowerCase();
+        String animType = config.getString("type", "armorstand").toLowerCase();
         String worldName = config.getString("location.world");
         double x = config.getDouble("location.x");
         double y = config.getDouble("location.y");
@@ -91,7 +95,7 @@ public class AnimationLoader {
         Location location = new Location(world, x, y, z);
         Rotatable rotatable;
 
-        switch (type) {
+        switch (animType) {
             case "head":
                 rotatable = new RotatingHead(location);
                 break;
@@ -104,9 +108,53 @@ public class AnimationLoader {
                 break;
         }
 
-        AnimationExecutor executor = new AnimationExecutor(plugin, rotatable, frames, interval, loop);
-        executor.start();
+        // Condiciones (opcional)
+        AnimationCondition condition = null;
+        ConfigurationSection condSection = config.getConfigurationSection("conditions");
+        if (condSection != null) {
+            String requiredWorld = condSection.getString("world", null);
+            double minDistance = condSection.getDouble("minDistance", 0.0);
+            double maxDistance = condSection.getDouble("maxDistance", 5.0);
+            String startTime = condSection.getString("startTime", null);
+            String endTime = condSection.getString("endTime", null);
 
-        logger.info("Loaded animation: " + file.getName() + " [" + type + "] with " + frames.size() + " frames.");
+            condition = new AnimationCondition(requiredWorld, minDistance, maxDistance, startTime, endTime);
+        }
+
+        AnimationExecutor executor = new AnimationExecutor(plugin, rotatable, frames, interval, loop, condition);
+
+        // Acciones al hacer clic (opcional)
+        ConfigurationSection clickSection = config.getConfigurationSection("click-actions");
+        if (clickSection != null) {
+            for (String key : clickSection.getKeys(false)) {
+                ClickTrigger trigger;
+                try {
+                    trigger = ClickTrigger.valueOf(key.toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    logger.warning("Invalid click trigger: " + key + " in " + file.getName());
+                    continue;
+                }
+
+                List<String> actions = clickSection.getStringList(key);
+                for (String rawAction : actions) {
+                    String[] parts = rawAction.split(":", 2);
+                    if (parts.length < 2) continue;
+
+                    ClickAction.ActionType actionType;
+                    try {
+                        actionType = ClickAction.ActionType.valueOf(parts[0].trim().toUpperCase());
+                    } catch (IllegalArgumentException e) {
+                        logger.warning("Invalid action type: " + parts[0] + " in " + file.getName());
+                        continue;
+                    }
+
+                    String value = parts[1].trim();
+                    executor.addClickAction(trigger, new ActionEntry(actionType, value));
+                }
+            }
+        }
+
+        executor.start();
+        logger.info("Loaded animation: " + file.getName() + " [" + animType + "] with " + frames.size() + " frames.");
     }
 }

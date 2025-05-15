@@ -1,0 +1,37 @@
+# This is a complete example demonstrating animation with conditions and click actions.
+# Copy this file to plugins/RotatingHeadsPlus/animations/ and rename as needed.
+
+type: armorstand  # Options: armorstand, head, entity
+
+location:
+  world: world
+  x: 100.5
+  y: 65.0
+  z: 200.5
+
+loop: true          # Should the animation loop after finishing?
+interval: 10        # Frame interval in ticks (20 ticks = 1 second)
+
+frames:
+  - [0, 0]
+  - [90, 0]
+  - [180, 0]
+  - [270, 0]
+
+# Optional execution conditions
+conditions:
+  world: world         # Only run if the animation is in this world
+  minDistance: 1.0     # Minimum player distance to trigger
+  maxDistance: 8.0     # Maximum player distance to trigger
+  startTime: "06:00"   # Optional time range (24h format)
+  endTime: "18:00"
+
+# Optional click actions grouped by trigger
+click-actions:
+  LEFT:
+    - "message:You left-clicked me!"
+    - "title:Hello::This is a subtitle"
+  RIGHT:
+    - "command:say %player% activated me with a right-click"
+  BOTH:
+    - "message:Triggered by any click!"

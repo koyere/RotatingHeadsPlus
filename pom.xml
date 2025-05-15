@@ -19,6 +19,7 @@
     </properties>
 
     <repositories>
+        <!-- ✅ Repositorio oficial de Spigot -->
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
@@ -26,10 +27,27 @@
     </repositories>
 
     <dependencies>
+        <!-- ✅ Spigot API -->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.21.1-R0.1-SNAPSHOT</version>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- ✅ PlaceholderAPI (localmente instalado en .m2) -->
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.6</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- ✅ JetBrains annotations (para @NotNull, @Nullable) -->
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>24.0.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

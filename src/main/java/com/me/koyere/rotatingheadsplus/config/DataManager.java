@@ -2,25 +2,30 @@ package com.me.koyere.rotatingheadsplus.config;
 
 import com.me.koyere.rotatingheadsplus.RotatingHeadsPlus;
 import com.me.koyere.rotatingheadsplus.animation.*;
-import com.me.koyere.rotatingheadsplus.head.RotatingHead;
 import com.me.koyere.rotatingheadsplus.armorstand.RotatingArmorStand;
 import com.me.koyere.rotatingheadsplus.entity.RotatingEntity;
+import com.me.koyere.rotatingheadsplus.head.RotatingHead;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.ArmorStand;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Loads and saves rotating entity animation data from/to YAML files.
+ */
 public class DataManager {
 
     private final RotatingHeadsPlus plugin = RotatingHeadsPlus.getInstance();
 
     /**
-     * Loads all .yml files from /data and applies the defined animations.
+     * Loads all YAML animation files from the /data/ folder.
      */
     public void loadHeads() {
         File dataFolder = new File(plugin.getDataFolder(), "data");
@@ -41,7 +46,7 @@ public class DataManager {
     }
 
     /**
-     * Loads a rotating head from a fixed block location.
+     * Loads a RotatingHead from block coordinates.
      */
     private void loadHeadFromLocation(YamlConfiguration config) {
         String worldName = config.getString("location.world");
@@ -63,7 +68,7 @@ public class DataManager {
     }
 
     /**
-     * Loads and animates an entity (ArmorStand or any Entity) by UUID.
+     * Loads a RotatingArmorStand or RotatingEntity by UUID and world.
      */
     private void loadEntityAnimation(YamlConfiguration config) {
         String worldName = config.getString("entity.world");
@@ -102,7 +107,7 @@ public class DataManager {
     }
 
     /**
-     * Parses the animation section from YAML and creates a valid HeadAnimation.
+     * Parses the animation section of a YAML config and returns a HeadAnimation.
      */
     private HeadAnimation parseAnimation(YamlConfiguration config, float defaultYaw) {
         String type = config.getString("animation.type", "circular").toLowerCase();
@@ -131,9 +136,64 @@ public class DataManager {
     }
 
     /**
-     * (Optional) Persists all registered heads/entities to disk in the future.
+     * Saves all currently animated entities to individual YAML files inside /data/
      */
     public void saveAll() {
-        // Not implemented yet. Can be added later if persistence is needed.
+        File dataFolder = new File(plugin.getDataFolder(), "data");
+        if (!dataFolder.exists()) dataFolder.mkdirs();
+
+        for (UUID id : plugin.getAnimationScheduler().getAllAnimatedIds()) {
+            Rotatable obj = plugin.getAnimationScheduler().getRotatableById(id);
+            HeadAnimation animation = plugin.getAnimationScheduler().getAnimation(obj);
+
+            if (obj == null || animation == null) continue;
+
+            YamlConfiguration config = new YamlConfiguration();
+
+            Location loc = obj.getLocation();
+            String world = loc.getWorld() != null ? loc.getWorld().getName() : "world";
+
+            if (obj instanceof RotatingHead) {
+                config.set("location.world", world);
+                config.set("location.x", loc.getBlockX());
+                config.set("location.y", loc.getBlockY());
+                config.set("location.z", loc.getBlockZ());
+
+            } else {
+                config.set("entity.world", world);
+                config.set("entity.uuid", obj.getUniqueId().toString());
+
+                if (obj instanceof RotatingArmorStand) {
+                    config.set("entity.type", "armorstand");
+                } else {
+                    config.set("entity.type", "entity");
+                }
+            }
+
+            config.set("animation.type", animation.getName());
+
+            // Basic fallbacks since getters like getMinYaw() may not exist
+            if (animation instanceof PingPongRotation) {
+                config.set("animation.minYaw", 0f);
+                config.set("animation.maxYaw", 180f);
+                config.set("animation.step", 3.0);
+                config.set("animation.interval", animation.getTickInterval());
+
+            } else if (animation instanceof CircularRotation) {
+                config.set("animation.startYaw", 0f);
+                config.set("animation.speed", 5.0);
+                config.set("animation.interval", animation.getTickInterval());
+
+            } else if (animation instanceof StaticRotation) {
+                config.set("animation.yaw", 90f);
+            }
+
+            File outFile = new File(dataFolder, id.toString() + ".yml");
+            try {
+                config.save(outFile);
+            } catch (IOException e) {
+                plugin.getLogger().warning("Could not save animation data for UUID: " + id);
+            }
+        }
     }
 }

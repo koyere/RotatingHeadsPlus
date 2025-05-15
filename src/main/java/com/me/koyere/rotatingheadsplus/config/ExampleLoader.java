@@ -6,6 +6,7 @@ import java.io.File;
 
 /**
  * Copies example animation files from resources/ to the plugin's folders on first run.
+ * Ensures users have useful YAML templates for learning and testing.
  */
 public class ExampleLoader {
 
@@ -26,19 +27,25 @@ public class ExampleLoader {
             animationsFolder.mkdirs();
         }
 
-        // Archivos para carpeta examples/
+        // === Examples to copy into /examples/ folder ===
         copy("examples/head_pingpong.yml");
         copy("examples/head_circular.yml");
         copy("examples/armorstand_rotation.yml");
         copy("examples/entity_spin.yml");
 
-        // Archivo de ejemplo para carpeta animations/
+        // NEW: Advanced examples for click actions and conditions
+        copy("examples/click_actions_example.yml");
+        copy("examples/head_timed_conditional.yml");
+
+        // === Simple animation example to /animations/ folder ===
         copy("animations/example.yml");
     }
 
     /**
-     * Copies a resource from the JAR into the plugin's data folder, if it does not already exist.
-     * @param path Path inside the resources folder (e.g. examples/file.yml or animations/example.yml)
+     * Copies a resource from the plugin's JAR into the plugin's data folder,
+     * only if it doesn't already exist in the destination.
+     *
+     * @param path Path relative to the resources folder (e.g., examples/file.yml or animations/example.yml)
      */
     private void copy(String path) {
         File dest = new File(plugin.getDataFolder(), path);
@@ -47,4 +54,3 @@ public class ExampleLoader {
         }
     }
 }
-

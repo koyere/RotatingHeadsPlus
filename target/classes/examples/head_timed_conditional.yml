@@ -1,0 +1,30 @@
+type: head
+location:
+  world: world
+  x: 100.5
+  y: 65.0
+  z: 100.5
+loop: true
+interval: 10
+
+# This animation will only run if:
+# - The world is "world"
+# - A player is between 1 and 10 blocks away
+# - The local time is between 08:00 and 18:00
+conditions:
+  world: world
+  minDistance: 1.0
+  maxDistance: 10.0
+  startTime: "08:00"
+  endTime: "18:00"
+
+frames:
+  - [0, 0]
+  - [45, 0]
+  - [90, 0]
+  - [135, 0]
+  - [180, 0]
+  - [225, 0]
+  - [270, 0]
+  - [315, 0]
+  - [360, 0]

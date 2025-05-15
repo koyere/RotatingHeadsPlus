@@ -10,7 +10,6 @@ import org.bukkit.block.Skull;
 import org.bukkit.block.data.Directional;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.profile.PlayerProfile;
 import org.bukkit.block.Block;
 import java.util.UUID;
 

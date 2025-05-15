@@ -25,3 +25,4 @@ command:
     list: "&e/rhead list &7- List total active rotations."
     reload: "&e/rhead reload &7- Reload data and config files."
     help: "&e/rhead help &7- Show this help message."
+    stop: "&e/rhead stop &7- Stop rotation of the nearest animated object."

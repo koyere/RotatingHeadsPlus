@@ -12,8 +12,10 @@ C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\m
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\compat\versions\v1_21_R1\VersionAdapterImpl.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\commands\HeadCommand.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\armorstand\RotatingArmorStand.java
+C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\placeholder\RotatingHeadsPlaceholder.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\commands\subcommands\CreateSubCommand.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\listeners\HeadPlaceListener.java
+C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\api\RotatingHeadsAPI.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\animation\AnimationScheduler.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\rotating\RotatingHead.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\animation\Rotatable.java
@@ -25,10 +27,13 @@ C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\m
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\MetricsHandler.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\compat\CompatProvider.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\metrics\charts\SimplePie.java
+C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\actions\ActionEntry.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\commands\SubCommand.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\commands\subcommands\ReloadSubCommand.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\compat\RotationUtils.java
+C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\commands\subcommands\StopSubCommand.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\entity\RotatingEntity.java
+C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\animation\AnimationCondition.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\compat\versions\v1_19_R1\VersionAdapterImpl.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\animation\AnimationLoader.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\metrics\json\JsonObjectBuilder.java
@@ -44,6 +49,8 @@ C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\m
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\compat\VersionHandler.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\rotating\RotatingEntity.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\commands\subcommands\ListSubCommand.java
+C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\actions\ClickTrigger.java
+C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\actions\ClickAction.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\head\HeadManager.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\rotating\RotatingArmorStand.java
 C:\Users\oeeg0\Documents\RotatingHeadsPlus\RotatingHeadsPlus\src\main\java\com\me\koyere\rotatingheadsplus\compat\versions\v1_16_R1\VersionAdapterImpl.java

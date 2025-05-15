@@ -1,15 +1,20 @@
 name: RotatingHeadsPlus
 main: com.me.koyere.rotatingheadsplus.RotatingHeadsPlus
 version: 1.0.0
-api-version: 1.20
+api-version: 1.14
 author: Koyere
 website: https://www.spigotmc.org/resources/rotatingheadsplus.00000/
 description: Adds rotating heads, armor stands and entities with customizable animations.
 
+softdepend:
+  - PlaceholderAPI
+  - HolographicDisplays
+  - DecentHolograms
+
 commands:
   rhead:
     description: Main command for creating and managing rotating heads/entities.
-    usage: /rhead <create|remove|list|reload|help>
+    usage: /rhead <create|remove|list|reload|stop|help>
     aliases: [rheads, rh]
 
 permissions:
@@ -19,8 +24,3 @@ permissions:
   rotatingheadsplus.admin:
     description: Allows access to /rhead reload and admin functions.
     default: op
-
-softdepend:
-  - PlaceholderAPI
-  - HolographicDisplays
-  - DecentHolograms
